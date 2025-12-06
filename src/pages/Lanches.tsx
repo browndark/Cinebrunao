@@ -507,13 +507,3 @@ export function Lanches() {
     </div>
   );
 }
-                  <i className="bi bi-trash"></i> Excluir
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
