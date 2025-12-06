@@ -16,23 +16,43 @@ export function Salas() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Dados enviados:", formData);
     try {
       const dadosValidos = salaSchema.parse(formData);
       setErrors({});
-      await fetch("http://localhost:3000/salas", {
+      console.log("Dados validados:", dadosValidos);
+      
+      const response = await fetch("http://localhost:3000/salas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dadosValidos),
       });
+      
+      console.log("Resposta do servidor:", response);
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+      
       toast.success("Sala cadastrada!");
-      window.location.reload();
+      setFormData({ numero: 0, capacidade: 0 }); // Limpar formulário
+      
+      // Recarregar salas
+      const salasResponse = await fetch("http://localhost:3000/salas");
+      const salasData = await salasResponse.json();
+      console.log("Salas atualizadas:", salasData);
+      setSalas(salasData);
     } catch (err) {
+      console.error("Erro:", err);
       if (err instanceof z.ZodError) {
         const fieldErrors: { [key: string]: string } = {};
         err.issues.forEach((error) => {
           fieldErrors[error.path[0] as string] = error.message;
         });
         setErrors(fieldErrors);
+        console.log("Erros de validação:", fieldErrors);
+        toast.error("Verifique os dados da sala");
+      } else {
+        toast.error("Erro ao cadastrar sala");
       }
     }
   };
@@ -71,6 +91,7 @@ export function Salas() {
             <input
               type="number"
               className={`form-control ${errors.numero ? "is-invalid" : ""}`}
+              value={formData.numero || ""}
               onChange={(e) =>
                 setFormData({ ...formData, numero: Number(e.target.value) })
               }
@@ -86,6 +107,7 @@ export function Salas() {
               className={`form-control ${
                 errors.capacidade ? "is-invalid" : ""
               }`}
+              value={formData.capacidade || ""}
               onChange={(e) =>
                 setFormData({ ...formData, capacidade: Number(e.target.value) })
               }

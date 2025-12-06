@@ -54,7 +54,7 @@ export function Home() {
     <>
       <style>{`
         .hero-section {
-          background: linear-gradient(to top, var(--bs-body-bg) 20%, rgba(0,0,0,0.5)), url('https://placehold.co/1920x1080/0A0A0A/FFFFFF?text=CineWeb') no-repeat center center;
+          background: linear-gradient(to top, var(--bs-body-bg) 20%, rgba(0,0,0,0.5)), url('https://placehold.co/1920x1080/0A0A0A/FFFFFF?text=CineBrun%C3%A3o!') no-repeat center center;
           background-size: cover;
           padding: 8rem 0;
           color: white;
@@ -108,24 +108,58 @@ export function Home() {
           <h2 className="mb-4">Em Cartaz</h2>
           <div className="horizontal-scroll">
             {filmesComSessao.length > 0 ? (
-              filmesComSessao.map((filme) => (
-                <div key={filme.id} className="card movie-card h-100">
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">{filme.titulo}</h5>
-                    <p className="card-text text-primary small">
-                      {filme.genero} | {filme.duracao} min
-                    </p>
-                    <div className="mt-auto pt-3">
-                      <Link
-                        to={`/sessoes`}
-                        className="btn btn-outline-primary btn-sm"
-                      >
-                        Ver Sessões
-                      </Link>
+              filmesComSessao.map((filme) => {
+                const sessoesDosFilmes = sessoes.filter(
+                  (s) => s.filmeId === filme.id && new Date(s.dataHora) > new Date()
+                );
+                return (
+                  <div key={filme.id} className="card movie-card h-100">
+                    {filme.foto && (
+                      <img
+                        src={filme.foto}
+                        alt={filme.titulo}
+                        className="card-img-top"
+                        style={{ height: "200px", objectFit: "cover" }}
+                      />
+                    )}
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title">{filme.titulo}</h5>
+                      <p className="card-text text-primary small">
+                        {filme.genero} | {filme.duracao} min
+                      </p>
+                      
+                      <div className="mt-3">
+                        <small className="text-muted d-block mb-2"><strong>Sessões:</strong></small>
+                        <div className="d-flex flex-column gap-2">
+                          {sessoesDosFilmes.slice(0, 3).map((sessao) => {
+                            const sala = getSala(sessao.salaId);
+                            return (
+                              <div key={sessao.id} className="p-2 bg-light rounded small">
+                                <div className="fw-semibold text-primary">
+                                  {new Date(sessao.dataHora).toLocaleTimeString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  })}
+                                </div>
+                                <div className="text-secondary">Sala {sala?.numero ?? "?"}</div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="mt-auto pt-3">
+                        <Link
+                          to={`/sessoes`}
+                          className="btn btn-outline-primary btn-sm"
+                        >
+                          Ver Sessões
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <p>Nenhum filme em cartaz no momento.</p>
             )}

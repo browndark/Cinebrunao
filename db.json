@@ -1,68 +1,92 @@
 {
   "filmes": [
     {
-      "id": "e2eb",
-      "titulo": "Teste de Filme",
-      "sinopse": "Sinopse de Teste",
-      "classificacao": "Livre",
+      "id": "1",
+      "titulo": "O Projeto Paraíso",
+      "genero": "Drama",
       "duracao": 120,
-      "genero": "Ação",
-      "dataEstreia": "2004-12-15"
+      "sinopse": "Uma história envolvente sobre descoberta e esperança",
+      "classificacao": "12",
+      "img": "https://via.placeholder.com/300x450?text=O+Projeto+Paraiso",
+      "cinemaId": "1"
     },
     {
-      "id": "7020",
-      "titulo": "Bastardos Inglorios",
-      "sinopse": "Durante a Segunda Guerra Mundial, na França, judeus americanos espalham o terror entre o terceiro Reich. Ao mesmo tempo, Shosanna, uma judia que fugiu dos nazistas, planeja vingança quando um evento em seu cinema reunirá os líderes do partido.",
-      "classificacao": "18",
-      "duracao": 260,
-      "genero": "Ação",
-      "dataEstreia": "2009-10-09"
+      "id": "2",
+      "titulo": "Ritmo da Noite",
+      "genero": "Musical",
+      "duracao": 110,
+      "sinopse": "Um filme musical que celebra a dança e a música",
+      "classificacao": "10",
+      "img": "https://via.placeholder.com/300x450?text=Ritmo+da+Noite",
+      "cinemaId": "1"
     }
   ],
   "salas": [
     {
-      "id": "f158",
-      "numero": 1,
-      "capacidade": 50
+      "id": "1",
+      "numero": "Sala 1",
+      "capacidade": 100,
+      "cinemaId": "1"
     },
     {
-      "id": "16d3",
-      "numero": 2,
-      "capacidade": 100
+      "id": "2",
+      "numero": "Sala 2",
+      "capacidade": 80,
+      "cinemaId": "1"
     }
   ],
   "sessoes": [
     {
-      "id": "ca30",
-      "filmeId": "e2eb",
-      "salaId": "f158",
-      "dataHora": "2026-02-15T15:12"
-    },
-    {
-      "id": "a34a",
-      "filmeId": "7020",
-      "salaId": "16d3",
-      "dataHora": "2025-12-15T22:00"
+      "id": "1",
+      "filmeId": "1",
+      "salaId": "1",
+      "horario": "14:00",
+      "ingressoDisponivel": 100,
+      "cinemaId": "1"
     }
   ],
   "ingressos": [
     {
-      "id": "6344",
-      "sessaoId": "ca30",
-      "tipo": "Meia",
-      "valor": 10
-    },
+      "id": "1",
+      "sessaoId": "1",
+      "assento": "A1",
+      "disponivel": true
+    }
+  ],
+  "cinemas": [
     {
-      "id": "b532",
-      "sessaoId": "a34a",
-      "tipo": "Inteira",
+      "id": "1",
+      "nome": "CineBrunão!",
+      "localizacao": "São Paulo",
+      "telefone": "(11) 1234-5678",
+      "salas": [],
+      "filmes": [],
+      "sessoes": []
+    }
+  ],
+  "lanches": [
+    {
+      "id": "1",
+      "nome": "Pipoca",
+      "descricao": "Pipoca crocante e deliciosa",
       "valor": 20
     },
     {
-      "id": "0128",
-      "sessaoId": "a34a",
-      "tipo": "Meia",
-      "valor": 10
+      "id": "2",
+      "nome": "Refrigerante",
+      "descricao": "Refrigerante gelado 500ml",
+      "valor": 15
     }
-  ]
+  ],
+  "combos": [
+    {
+      "id": "1",
+      "nome": "Combo Clássico",
+      "descricao": "Pipoca + Refrigerante",
+      "valor": 30
+    }
+  ],
+  "ingressoCombo": [],
+  "compras": [],
+  "comprasLanches": []
 }

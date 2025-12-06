@@ -14,7 +14,7 @@ export function Navbar() {
       <div className="container">
         <NavLink className="navbar-brand d-flex align-items-center" to="/">
           <i className="bi bi-camera-reels me-2 fs-4"></i>
-          <span className="fs-4">CineWeb</span>
+          <span className="fs-4">🎬 CineBrunão!</span>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -61,6 +61,24 @@ export function Navbar() {
               <NavLink to="/ingressos" className={getLinkClass}>
                 <i className="bi bi-ticket-perforated me-2"></i>
                 Ingressos
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/cinemas" className={getLinkClass}>
+                <i className="bi bi-building me-2"></i>
+                Cinemas
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/lanches" className={getLinkClass}>
+                <i className="bi bi-egg-fried me-2"></i>
+                Lanches
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/combos" className={getLinkClass}>
+                <i className="bi bi-basket me-2"></i>
+                Combos
               </NavLink>
             </li>
           </ul>
